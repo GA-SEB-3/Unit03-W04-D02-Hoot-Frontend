@@ -33,6 +33,7 @@ function HootList() {
                 <h2>{oneHoot.title}</h2>
                 <p>{oneHoot.text}</p>
                 <p>Author:{oneHoot.author.username}</p>
+                <p>Category:{oneHoot.category}</p>
             </div>
       </div>
     )}
