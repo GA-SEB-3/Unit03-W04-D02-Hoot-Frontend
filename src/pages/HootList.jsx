@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
+import {Link} from "react-router"
 
 function HootList() {
     const [hoots,setHoots] = useState([])
@@ -29,12 +30,13 @@ function HootList() {
       {hoots.map((oneHoot)=>
       <div style={{margin:"100px"}} key={oneHoot._id}>
         
-        <div>
-                <h2>{oneHoot.title}</h2>
+            <Link to={`/hoots/${oneHoot._id}`}>
+            <h2>{oneHoot.title}</h2>
                 <p>{oneHoot.text}</p>
                 <p>Author:{oneHoot.author.username}</p>
                 <p>Category:{oneHoot.category}</p>
-            </div>
+            </Link>
+                
       </div>
     )}
     </div>
