@@ -6,6 +6,7 @@ import Signup from './pages/Signup'
 import Navbar from './components/Navbar'
 import ValidateIsLoggedIn from './validators/ValidateIsLoggedIn'
 import ValidateIsLoggedOut from './validators/ValidateIsLoggedOut'
+import HootList from './pages/HootList'
 
 function App() {
 
@@ -14,9 +15,10 @@ function App() {
     <>
       <Navbar/>
       <Routes>
-        <Route path="/" element={<ValidateIsLoggedIn><Homepage/></ValidateIsLoggedIn>}/>
         <Route path="/signup" element={<ValidateIsLoggedOut><Signup/></ValidateIsLoggedOut>}/>
         <Route path="/login" element={<ValidateIsLoggedOut><Login/></ValidateIsLoggedOut>}/>
+        <Route path="/hoots" element={<HootList/>}/>
+
       </Routes>
     </>
   )
