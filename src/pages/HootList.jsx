@@ -29,13 +29,11 @@ function HootList() {
       {hoots.map((oneHoot)=>
       <div style={{margin:"100px"}} key={oneHoot._id}>
         
-        <article>
-            <header>
+        <div>
                 <h2>{oneHoot.title}</h2>
                 <p>{oneHoot.text}</p>
                 <p>Author:{oneHoot.author.username}</p>
-            </header>
-        </article>
+            </div>
       </div>
     )}
     </div>
