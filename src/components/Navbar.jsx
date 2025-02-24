@@ -11,10 +11,13 @@ function Navbar() {
     <div>
       <ul>
         <Link to="/"><li>Homepage</li></Link>
+
         {user && (
 
           <>
           <li>Welcome {user.username}</li>
+          <Link to='/hoots'><li>Hoots</li></Link>
+
           <button onClick={logout}>Logout</button>
           </>
         )}

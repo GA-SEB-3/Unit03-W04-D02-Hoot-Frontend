@@ -8,18 +8,32 @@ import ValidateIsLoggedIn from './validators/ValidateIsLoggedIn'
 import ValidateIsLoggedOut from './validators/ValidateIsLoggedOut'
 import HootList from './pages/HootList'
 import HootDetails from './pages/HootDetails'
-
+import { useContext } from 'react'
+import { authContext } from './context/AuthContext'
 function App() {
 
+  const {user} = useContext(authContext)
 
   return (
     <>
       <Navbar/>
       <Routes>
-        <Route path="/signup" element={<ValidateIsLoggedOut><Signup/></ValidateIsLoggedOut>}/>
-        <Route path="/login" element={<ValidateIsLoggedOut><Login/></ValidateIsLoggedOut>}/>
-        <Route path="/hoots" element={<HootList/>}/>
-        <Route path="/hoots/:hootId" element={<HootDetails/>} />
+        {
+          user ? (
+            <>
+              <Route path="/hoots" element={<HootList/>}/>
+              <Route path="/hoots/:hootId" element={<HootDetails/>} />
+            </>
+    
+          ):
+          (
+            <>
+              <Route path="/signup" element={<Signup/>}/>
+              <Route path="/login" element={<Login/>}/>
+
+            </>
+          )
+        }
 
       </Routes>
     </>

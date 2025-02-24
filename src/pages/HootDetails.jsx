@@ -28,7 +28,6 @@ function HootDetails() {
   return (
     <div>
       <h1>Hoot Details</h1>
-
       {hoot && (
         <div>
             <p>Category:{hoot.category}</p>
@@ -42,6 +41,7 @@ function HootDetails() {
             <p>{hoot.text}</p>
 
             <h2>Comments</h2>
+            {hoot.comments.length <=0 && <p>Sorry No Comments Yet!</p>}
             {hoot.comments.map((oneComment)=>
             <div key={oneComment._id}>
                 <p>Author:{oneComment.author.username}</p>
