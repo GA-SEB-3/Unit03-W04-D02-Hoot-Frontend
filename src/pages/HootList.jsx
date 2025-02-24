@@ -6,8 +6,10 @@ function HootList() {
 
     async function getHoots(){
         try{
+            console.log(import.meta.env.VITE_BACKEND_URL)
             const token = localStorage.getItem("token")
-            const fetchedHoots = await axios.get(`${import.meta.VITE_BACKEND_URL}/hoots`,{headers:{Authorization:`Bearer ${token}`}})
+            const fetchedHoots = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/hoot`,{headers:{Authorization:`Bearer ${token}`}})
+            console.log(fetchedHoots.data)
             setHoots(fetchedHoots.data)
 
         }
@@ -23,6 +25,19 @@ function HootList() {
   return (
     <div>
       <h1>Hoot List</h1>
+
+      {hoots.map((oneHoot)=>
+      <div style={{margin:"100px"}} key={oneHoot._id}>
+        
+        <article>
+            <header>
+                <h2>{oneHoot.title}</h2>
+                <p>{oneHoot.text}</p>
+                <p>Author:{oneHoot.author.username}</p>
+            </header>
+        </article>
+      </div>
+    )}
     </div>
   )
 }
