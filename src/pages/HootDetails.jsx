@@ -1,6 +1,7 @@
 import {useState,useEffect} from 'react'
 import {useParams} from 'react-router'
 import axios from 'axios'
+import CommentBox from '../components/CommentBox'
 
 function HootDetails() {
     const [hoot,setHoot] = useState(null)
@@ -41,6 +42,7 @@ function HootDetails() {
             <p>{hoot.text}</p>
 
             <h2>Comments</h2>
+            <CommentBox hootId = {hootId} getHoot={getHoot}/>
             {hoot.comments.length <=0 && <p>Sorry No Comments Yet!</p>}
             {hoot.comments.map((oneComment)=>
             <div key={oneComment._id}>

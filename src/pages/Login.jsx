@@ -2,6 +2,7 @@ import {useState, useContext} from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router'
 import { authContext } from '../context/AuthContext'
+import { login } from '../service/authService'
 
 
 function Login() {
@@ -20,9 +21,9 @@ function Login() {
     async function handleSubmit(e){
       e.preventDefault()
       try{
-          const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/login`,formData)
-          console.log(response.data)
-          localStorage.setItem("token",response.data.token)
+          const response = await login(formData)
+          console.log(response)
+          localStorage.setItem("token",response.token)
           validateToken()
           // navigate("/login")
       }

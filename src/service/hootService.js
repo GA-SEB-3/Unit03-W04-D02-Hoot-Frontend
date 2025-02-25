@@ -52,11 +52,22 @@ async function createHoot(formData){
         console.log(err)
     }
 }
+
+async function createComment(id,formData){
+    try{
+        const res = await api.post(`/${id}/comment`,formData)
+        return res.data
+
+    }catch(err){
+        console.log(err)
+    }
+}
   
 
   export { 
     getAllHoots,
     getOneHoot,
     deleteHoot,
-    createHoot
+    createHoot,
+    createComment
   };

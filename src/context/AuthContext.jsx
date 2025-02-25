@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from 'axios'
 import { useNavigate } from "react-router";
+import {verify} from '../service/authService'
 
 // 1. creating the context
 const authContext = createContext()
@@ -20,9 +21,9 @@ function UserProvider(props){
 
             try{
 
-                const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/auth/verify`,{headers:{Authorization:`Bearer ${token}`}})
+                const response = await verify()
                 // console.log(response.data)
-                setUser(response.data)    
+                setUser(response)    
             }
             // second condition if the token is not valid
             catch(err){

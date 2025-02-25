@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router'
+import { signup } from '../service/authService'
 
 function Signup() {
 
@@ -19,7 +20,7 @@ function Signup() {
     async function handleSubmit(e){
         e.preventDefault()
         try{
-            await axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/sign-up`,formData)
+            await signup(formData)
             navigate("/login")
         }
         catch(err){
