@@ -17,6 +17,8 @@ function Navbar() {
           <>
           <li>Welcome {user.username}</li>
           <Link to='/hoots'><li>Hoots</li></Link>
+          <Link to='/hoots/create'><li>Create Hoot</li></Link>
+
 
           <button onClick={logout}>Logout</button>
           </>

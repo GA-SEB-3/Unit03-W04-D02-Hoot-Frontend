@@ -1,17 +1,22 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useContext} from 'react'
 import axios from 'axios'
 import {Link} from "react-router"
+import { authContext } from '../context/AuthContext'
+import { getAllHoots, deleteHoot } from '../service/hootService'
+
 
 function HootList() {
     const [hoots,setHoots] = useState([])
 
+    const {user} = useContext(authContext)
+    console.log(user._id)
+
     async function getHoots(){
         try{
-            console.log(import.meta.env.VITE_BACKEND_URL)
-            const token = localStorage.getItem("token")
-            const fetchedHoots = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/hoot`,{headers:{Authorization:`Bearer ${token}`}})
-            console.log(fetchedHoots.data)
-            setHoots(fetchedHoots.data)
+            
+            const fetchedHoots = await getAllHoots()
+            console.log(fetchedHoots)
+            setHoots(fetchedHoots)
 
         }
         catch(error){
@@ -19,6 +24,14 @@ function HootList() {
         }
 
     }
+
+    async function deleteHoot(id){
+  
+      await deleteHoot()
+      // refetching the hoots after we delete and setting the state again
+      await getHoots()
+    }
+   
 
     useEffect(()=>{
         getHoots()
@@ -36,6 +49,17 @@ function HootList() {
                 <p>Author:{oneHoot.author.username}</p>
                 <p>Category:{oneHoot.category}</p>
             </Link>
+
+          {user._id === oneHoot.author._id && (
+            <>
+            <button onClick={()=>{deleteHoot(oneHoot._id)}}>Delete Hoot</button>
+            <Link to={`/hoots/${oneHoot._id}/edit`}><button>Update Hoot</button></Link>
+
+            </>
+
+            )}
+          
+        
                 
       </div>
     )}

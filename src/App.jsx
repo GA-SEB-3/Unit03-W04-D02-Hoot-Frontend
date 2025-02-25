@@ -10,6 +10,8 @@ import HootList from './pages/HootList'
 import HootDetails from './pages/HootDetails'
 import { useContext } from 'react'
 import { authContext } from './context/AuthContext'
+import CreateHoot from './pages/CreateHoot'
+import EditHoot from './pages/EditHoot'
 function App() {
 
   const {user} = useContext(authContext)
@@ -23,6 +25,9 @@ function App() {
             <>
               <Route path="/hoots" element={<HootList/>}/>
               <Route path="/hoots/:hootId" element={<HootDetails/>} />
+              <Route path="/hoots/create" element={<CreateHoot/>} />
+              <Route path="/hoots/:hootId/edit" element={<EditHoot/>} />
+              
             </>
     
           ):

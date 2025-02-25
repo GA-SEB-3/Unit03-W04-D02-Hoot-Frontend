@@ -35,7 +35,7 @@ function HootDetails() {
             <h1>{hoot.title}</h1>
 
             <p>
-                {hoot.author.username} posted on {hoot.createdAt}
+                {hoot.author.username} posted on {new Date(hoot.createdAt).toLocaleDateString()}
             </p>
 
             <p>{hoot.text}</p>
